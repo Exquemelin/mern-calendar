@@ -40,6 +40,7 @@ app.use( express.json() );
 // TODO: CRUD: Eventos
 // Mediante el middleware .use() le decimos a nuestra app que usando esa ruta pase la información a nuestro archivo auth en routes
 app.use('/api/auth', require('./routes/auth') );
+app.use('/api/events', require('./routes/events') );
 
 
 // Escuchamos las peticiciones en nuestro server en el puerto que queramos
