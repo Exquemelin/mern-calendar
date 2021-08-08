@@ -55,6 +55,7 @@ const crearUsuario = async (req, res = response ) => {
             ok: true,
             msg: 'Se ha registrado con éxito!',
             name: usuario.name,
+            uid: usuario.id,
             token
             // name,
             // email,
@@ -116,6 +117,7 @@ const loginUsuario = async (req, res = response ) => {
             ok: true,
             msg: 'Se ha autenticado con éxito',
             name: usuario.name,
+            uid: usuario.id,
             token
             // email,
             // password,
@@ -151,6 +153,8 @@ const revalidarToken = async (req, res = response ) => {
         // Devolvemos una respuesta con el nuevo token
         return res.json({
             ok: true,
+            name,
+            uid,
             token
         });
 
