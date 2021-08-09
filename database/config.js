@@ -9,6 +9,9 @@ const dbConnection = async() => {
     // Usamos el método Try-Catch por si hubiese algún error poder gestionarlo
     try {
 
+        // Se necesita para evitar la deprecation del `findOneAndUpdate()` and `findOneAndDelete()`
+        mongoose.set( 'useFindAndModify', false );
+
         await mongoose.connect( process.env.DB_CNN, {
             useNewUrlParser: true, 
             useUnifiedTopology: true,
