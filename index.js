@@ -41,6 +41,9 @@ app.use( express.json() );
 // Mediante el middleware .use() le decimos a nuestra app que usando esa ruta pase la información a nuestro archivo auth en routes
 app.use('/api/auth', require('./routes/auth') );
 app.use('/api/events', require('./routes/events') );
+app.use('/api/panels', require('./routes/panels') );
+app.use('/api/points', require('./routes/points') );
+app.use('/api/tests', require('./routes/tests') );
 
 
 // Escuchamos las peticiciones en nuestro server en el puerto que queramos
