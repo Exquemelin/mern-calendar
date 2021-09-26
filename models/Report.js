@@ -10,37 +10,45 @@ const PointSchema = Schema({
 
     client: {
         type: String,
-        // required: true,
+        required: true,
     },
     project: {
         type: String,
-        // required:true,
+        required:true,
     },
     serial: {
         type: String,
-        // required: true,
+        required: true,
     },
-    step: {
-        type: String,
-        // required: true,
-    },
-    category: {
+    panelId: {
         type: String,
         required: true,
     },
-    description: {
+    remarks: {
         type: String,
         required: true,
     },
-    result: {
-        type: Boolean,
-    },
-    result_value: {
-        type: String,
-    },
-    result_unit: {
-        type: String,
-    },
+    // step: {
+    //     type: String,
+    //     // required: true,
+    // },
+    // category: {
+    //     type: String,
+    //     required: true,
+    // },
+    // description: {
+    //     type: String,
+    //     required: true,
+    // },
+    // result: {
+    //     type: Boolean,
+    // },
+    // result_value: {
+    //     type: String,
+    // },
+    // result_unit: {
+    //     type: String,
+    // },
     user: {
         type: Schema.Types.ObjectId, // Le decimos a Mongoose que es del tipo objeto ide
         ref: 'Usuario', // Este es el Schema de nuestro tipo

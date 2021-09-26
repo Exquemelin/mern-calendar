@@ -47,7 +47,7 @@ const createPanel = async ( req, res = response ) => {
         return res.status(200).json({
             ok: true,
             función: 'CREATE',
-            evento: panelSaved,
+            panel: panelSaved,
         })
 
     } catch (error) {
@@ -108,6 +108,8 @@ const updatePanel = async ( req, res = response ) => {
         // Le pasamos el ID del cuadro a actualizar, y la variable con la información a actualizar
         // Le decimos con new: true que devuelva el cuadro con los datos actualizados
         const panelUpdated = await Panel.findByIdAndUpdate( panelId, newPanel, { new: true } );
+
+        console.log( panelUpdated );
         
         // devolvemos la respuesta con el evento actualizado
         return res.status(200).json({

@@ -13,7 +13,7 @@ const getTests = async ( req, res = response ) => {
 
     // Declaramos una variable y le cargamos todos los tests desde la DB
     // Podríamos aplicar filtros
-    const tests = await Test.find()
+    const tests = await Test.find();
                                 // .populate('user', 'name'); // Con esto cargamos los datos del usuario buscándolos en nuestra DB, y le especificamos qué campos queremos imprimir
 
     // Devolvemos una respuesta con todos los tests
@@ -21,7 +21,100 @@ const getTests = async ( req, res = response ) => {
         ok: true,
         función: 'GET',
         tests,
-    })
+    });
+
+};
+
+// Creamos una función que busque los tests de un cuadro
+const getPanelTests = async ( req, res = response ) => {
+
+    // Extraemos los datos del panel del query
+    const { panelId } = req.query;
+
+    // Hacemos un try-catch para enviar los datos a la DB
+    try {
+
+        // Declaramos una variable para cargar los datos que vengan de la DB
+        const tests = await Test.find({ panelId });
+        
+        // Si nos llegan varios tests, es que los tenemos
+        if ( tests. length > 0 ) {
+
+            // Devolvemos una respuesta OK con la información que nos ha llegado
+            return res.status(200).json({
+                ok: true,
+                function: 'GET',
+                fat: tests,
+            });
+        } else {
+
+            // Si no existen devolvemos una respuesta
+            return res.status(204).json({
+                ok: false,
+                función: 'GET',
+                msg: "No existe ningún test para ese cuadro"
+            });
+
+        };
+        
+    } catch (error) {
+
+        // Si hubo un error lo imprimimos en pantalla y devolvemos una respuesta informando
+        console.log(error);
+
+        return res.status(500).json({
+            ok: false,
+            msg: 'Hable con el administrador'
+        });
+
+    }
+    
+}
+
+// Creamos una función que busque un test en concreto por el id del point y el del panel
+const getTest = async ( req, res = response ) => {
+    
+    // Extraemos los datos del panel y el point del query
+    const { panelId, pointId } = req.query;
+
+    // Hacemos un try-catch para enviar los datos a la DB
+    try {
+        
+        // Declaramos una variable para cargar los datos que vengan de la DB
+        const test = await Test.find({ panelId, pointId });
+
+        // Si nos llega un test, es que lo tenemos
+        if ( test.length > 0 ) {
+
+            // Devolvemos una respuesta OK con la información que nos ha llegado
+            return res.status(200).json({
+                ok: true,
+                función: 'GET',
+                fat: test,
+            });
+
+        } else {
+
+            // Si no existe devolvemos una respuesta
+            return res.status(204).json({
+                ok: false,
+                función: 'GET',
+                msg: "No existe el test",
+            });
+
+        };
+        
+    } catch (error) {
+
+        // Si hubo un error lo imprimimos en pantalla y devolvemos una respuesta informando
+        console.log(error);
+
+        return res.status(500).json({
+            ok: false,
+            msg: 'Hable con el administrador'
+        });
+        
+    };
 
 }
 
@@ -47,7 +140,7 @@ const createTest = async ( req, res = response ) => {
         return res.status(200).json({
             ok: true,
             función: 'CREATE',
-            evento: testSaved,
+            fat: testSaved,
         })
 
     } catch (error) {
@@ -199,9 +292,11 @@ const deleteTest = async ( req, res = response ) => {
 // Exportamos las funciones para utilizarlas
 module.exports = {
     getTests,
+    getTest,
     createTest,
     updateTest,
-    deleteTest
+    deleteTest,
+    getPanelTests,
 }
 
 

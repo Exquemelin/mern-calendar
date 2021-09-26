@@ -37,12 +37,18 @@ const PointSchema = Schema({
     value: {
         type: Boolean,
     },
-    resultValue: {
-        type: String,
-    },
+    // resultValue: {
+    //     type: String,
+    // },
     resultUnit: {
         type: String,
     },
+    // status: {
+    //     type: String,
+    // },
+    // result: {
+    //     type: String,
+    // },
     user: {
         type: Schema.Types.ObjectId, // Le decimos a Mongoose que es del tipo objeto ide
         ref: 'Usuario', // Este es el Schema de nuestro tipo

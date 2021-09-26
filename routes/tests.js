@@ -13,7 +13,7 @@ const { check } = require('express-validator');
 
 
 // Importamos las funciones que vamos a usar en las rutas
-const { getTests, createTest, updateTest, deleteTest } = require('../controllers/tests');
+const { getTests, createTest, updateTest, deleteTest, getTest, getPanelTests } = require('../controllers/tests');
 // Importamos el middleware que va a validar el JWT
 const { validarJWT } = require('../middlewares/validar-jwt');
 // Importamos el middleware que va a validar los campos, una vez les hayamos hecho el check
@@ -31,7 +31,7 @@ router.use( validarJWT );
 
 // TODO: revisar los validators.
 
-// Obtener eventos
+// Obtener fat points
 router.get(
     '/', 
     [
@@ -39,6 +39,22 @@ router.get(
     ],
     getTests 
 );
+
+// Obtener fat points de un panel
+router.get(
+    '/panel/:id', 
+    [
+        // validarJWT,
+    ],
+    getPanelTests
+);
+
+// Ogtener un fat point enviado panel y point
+router.get(
+    '/fat',
+    [],
+    getTest
+)
 
 // Crear evento
 router.post(

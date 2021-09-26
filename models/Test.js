@@ -10,11 +10,19 @@ const TestSchema = Schema({
         type: String,
         required: true,
     },
+    panelId: {
+        type: String,
+        required: true,
+    },
     pointId: {
         type: String,
         required:true,
     },
     result: {
+        type: String,
+        required: true,
+    },
+    status: {
         type: String,
         required: true,
     },
@@ -34,6 +42,9 @@ const TestSchema = Schema({
         type: String,
     },
     revTecnician: {
+        type: String,
+    },
+    remarks: {
         type: String,
     },
     revTimestamp: {

@@ -47,7 +47,7 @@ const createPoint = async ( req, res = response ) => {
         return res.status(200).json({
             ok: true,
             función: 'CREATE',
-            evento: pointSaved,
+            point: pointSaved,
         })
 
     } catch (error) {
