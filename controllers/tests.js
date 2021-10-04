@@ -29,7 +29,11 @@ const getTests = async ( req, res = response ) => {
 const getPanelTests = async ( req, res = response ) => {
 
     // Extraemos los datos del panel del query
-    const { panelId } = req.query;
+    const { id: panelId } = req.params;
+
+    // console.log( panelId );
+
+    // const panelId = id;
 
     // Hacemos un try-catch para enviar los datos a la DB
     try {
@@ -161,6 +165,8 @@ const updateTest = async ( req, res = response ) => {
 
     // Obtenemos el id del test que nos viene en los parámetros del request
     const testId = req.params.id;
+
+    console.log( req.body.point );
 
     // Usamos un try-catch por si algo fallase a la hora de consultar en la base de datos
     try {

@@ -44,6 +44,7 @@ app.use('/api/events', require('./routes/events') );
 app.use('/api/panels', require('./routes/panels') );
 app.use('/api/points', require('./routes/points') );
 app.use('/api/tests', require('./routes/tests') );
+app.use('/api/reports', require('./routes/reports') );
 
 
 // Escuchamos las peticiciones en nuestro server en el puerto que queramos
