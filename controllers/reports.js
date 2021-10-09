@@ -25,9 +25,9 @@ const testReport = async ( req, res = response ) => {
 
     const { panel, points } = req.body;
 
-    var path = './public/files/reports/file.pdf';
+    var dir = path.resolve( `${__dirname}/../public/files/reports/file.pdf`);
 
-    const done = await createReport( panel, points, path );
+    const done = await createReport( panel, points, dir );
 
     console.log('========== LISTO ==========')
 
@@ -82,8 +82,14 @@ const testReport = async ( req, res = response ) => {
     if (done) {
 
         setTimeout(() => {
+
+            // const url = path.resolve( `${__dirname}/../public/files/reports/file.pdf`);
+
+            console.log( dir );
+
+
             
-            return res.status(200).sendFile( `e:/react/10-calendar-backend/public/files/reports/file.pdf`, { maxAge: 1000 }, function ( err ) {
+            return res.status(200).sendFile( dir, { maxAge: 1000 }, function ( err ) {
                 if ( err ) {
                     console.log( err );
                 } else {
@@ -177,11 +183,11 @@ const testCertificate = async ( req, res = response ) => {
     const { panel, categories, steps } = req.body;
 
     // Establecemos la dirección donde se va a guardar el archivo
-    var path = './public/files/certificates/file.pdf';
+    var dir = path.resolve( `${__dirname}/../public/files/reports/file.pdf`);
 
     // LLamamos la función que va a crear el certificado y le pasamos los datos
     // Nos va a devolver un true cuando termine
-    const done = await createCertificate( panel, categories, steps, path );
+    const done = await createCertificate( panel, categories, steps, dir );
 
     console.log('========== CERT LISTO ==========')
     
@@ -190,7 +196,7 @@ const testCertificate = async ( req, res = response ) => {
 
         setTimeout(() => {
             
-            return res.status(200).sendFile( `e:/react/10-calendar-backend/public/files/certificates/file.pdf`, { maxAge: 1000 }, function ( err ) {
+            return res.status(200).sendFile( dir, { maxAge: 1000 }, function ( err ) {
                 if ( err ) {
                     console.log( err );
                 } else {
